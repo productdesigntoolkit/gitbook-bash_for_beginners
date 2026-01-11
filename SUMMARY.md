@@ -1,30 +1,30 @@
-# Summary
+# Table of contents
 
 * [Einführung](README.md)
 
 ## Über dieses Buch
 
-* [Impressum](frontmatter/impressum.md)
-* [Vorwort](frontmatter/vorwort.md)
-* [Über den Autor](frontmatter/ueber-autor.md)
+* [Impressum](uber-dieses-buch/impressum.md)
+* [Vorwort](uber-dieses-buch/vorwort.md)
+* [Über den Autor](uber-dieses-buch/uber-den-autor.md)
 
 ## Grundlagen
 
-* [Was ist Bash?](chapters/01-einfuehrung.md)
-* [Kernkonzepte](chapters/02-grundlagen.md)
-* [Erste Schritte](chapters/03-erste-schritte.md)
+* [Was ist Bash?](grundlagen/was-ist-bash.md)
+* [Kernkonzepte](grundlagen/kernkonzepte.md)
+* [Erste Schritte](grundlagen/erste-schritte.md)
 
 ## Vertiefung
 
-* [Dateien & Verzeichnisse](chapters/04-dateien-verzeichnisse.md)
-* [Scripting Basics](chapters/05-scripting-basics.md)
+* [Dateien & Verzeichnisse](vertiefung/dateien-and-verzeichnisse.md)
+* [Scripting Basics](vertiefung/scripting-basics.md)
 
 ## Praxis
 
-* [Übungen & Projekte](chapters/06-praxis.md)
-* [Nächste Schritte](chapters/07-naechste-schritte.md)
+* [Übungen & Projekte](praxis/ubungen-and-projekte.md)
+* [Nächste Schritte](praxis/nachste-schritte.md)
 
 ## Ressourcen
 
-* [Glossar](backmatter/glossar.md)
-* [Cheatsheet](backmatter/cheatsheet.md)
+* [Glossar](ressourcen/glossar.md)
+* [Cheatsheet](ressourcen/cheatsheet.md)
