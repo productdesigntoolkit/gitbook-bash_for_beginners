@@ -1,0 +1,16 @@
+{
+  "title": "Bash for Beginners",
+  "description": "Der praktische Einstieg in die Bash-Shell und Kommandozeile",
+  "author": "Ralph Hutter",
+  "language": "de",
+  "gitbook": ">=3.0.0",
+  "links": {
+    "sidebar": {
+      "HWZ Zürich": "https://fh-hwz.ch",
+      "Product Design Toolkit": "https://productdesigntoolkit.net"
+    }
+  },
+  "plugins": [
+    "hints"
+  ]
+}
