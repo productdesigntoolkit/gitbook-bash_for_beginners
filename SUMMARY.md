@@ -1,12 +1,6 @@
-# Summary
+# Table of contents
 
 * [Einführung](README.md)
-
-## Über dieses Buch
-
-* [Impressum](frontmatter/impressum.md)
-* [Vorwort](frontmatter/vorwort.md)
-* [Über den Autor](frontmatter/ueber-autor.md)
 
 ## Grundlagen
 
@@ -23,6 +17,12 @@
 
 * [Übungen & Projekte](chapters/06-praxis.md)
 * [Nächste Schritte](chapters/07-naechste-schritte.md)
+
+## Über dieses Buch
+
+* [Impressum](frontmatter/impressum.md)
+* [Vorwort](frontmatter/vorwort.md)
+* [Über den Autor](frontmatter/ueber-autor.md)
 
 ## Ressourcen
 

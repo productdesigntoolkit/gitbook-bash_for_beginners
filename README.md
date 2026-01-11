@@ -1,8 +1,10 @@
-# Bash for Beginners
+# Einführung
 
 > Der praktische Einstieg in die Bash-Shell und Kommandozeile
 
----
+***
+
+<figure><img src=".gitbook/assets/IMG_4650.png" alt=""><figcaption></figcaption></figure>
 
 ## Über dieses Buch
 
@@ -16,29 +18,29 @@ Bash ist die Standard-Shell auf Linux und macOS und damit das wichtigste Werkzeu
 
 Dieses Buch richtet sich an:
 
-- **Komplette Einsteiger** – die noch nie mit einer Kommandozeile gearbeitet haben
-- **Entwickler** – die ihre Produktivität steigern wollen
-- **Systemadministratoren in Ausbildung** – die Linux-Grundlagen benötigen
-- **Mac-User** – die das volle Potenzial ihres Systems nutzen möchten
-- **Studierende** – in IT-nahen Studiengängen
+* **Komplette Einsteiger** – die noch nie mit einer Kommandozeile gearbeitet haben
+* **Entwickler** – die ihre Produktivität steigern wollen
+* **Systemadministratoren in Ausbildung** – die Linux-Grundlagen benötigen
+* **Mac-User** – die das volle Potenzial ihres Systems nutzen möchten
+* **Studierende** – in IT-nahen Studiengängen
 
 ## Was lernst du?
 
 Nach dem Lesen dieses Buches wirst du:
 
-- Die Bash-Shell sicher navigieren und verstehen
-- Dateien und Verzeichnisse effizient verwalten
-- Texte suchen, filtern und verarbeiten
-- Einfache Bash-Skripte schreiben und ausführen
-- Repetitive Aufgaben automatisieren
-- Die wichtigsten Befehle aus dem Gedächtnis anwenden
-- Selbstständig neue Befehle erlernen und verstehen
+* Die Bash-Shell sicher navigieren und verstehen
+* Dateien und Verzeichnisse effizient verwalten
+* Texte suchen, filtern und verarbeiten
+* Einfache Bash-Skripte schreiben und ausführen
+* Repetitive Aufgaben automatisieren
+* Die wichtigsten Befehle aus dem Gedächtnis anwenden
+* Selbstständig neue Befehle erlernen und verstehen
 
 ## Voraussetzungen
 
-- Ein Computer mit Zugang zu einer Bash-Shell (Linux, macOS oder Windows mit WSL)
-- Grundlegende Computerkenntnisse (Dateien öffnen, Programme starten)
-- Keine Programmierkenntnisse erforderlich
+* Ein Computer mit Zugang zu einer Bash-Shell (Linux, macOS oder Windows mit WSL)
+* Grundlegende Computerkenntnisse (Dateien öffnen, Programme starten)
+* Keine Programmierkenntnisse erforderlich
 
 ## So nutzt du dieses Buch
 
@@ -50,8 +52,8 @@ Dieses Buch ist für sequentielles Lesen konzipiert – jedes Kapitel baut auf d
 
 Das Cheatsheet am Ende eignet sich hervorragend als Schnellreferenz für den Alltag.
 
----
+***
 
-**Version:** 1.0  
-**Lizenz:** CC BY-NC-SA 4.0  
+**Version:** 1.0\
+**Lizenz:** CC BY-NC-SA 4.0\
 **Autor:** Ralph Hutter
