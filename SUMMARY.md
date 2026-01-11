@@ -27,6 +27,7 @@
 ## Fun & Kultur
 
 * [All Your Base Are Belong To Us](chapters/all-your-base.md)
+* [Lab](backmatter/lab.md)
 
 ## Ressourcen
 
