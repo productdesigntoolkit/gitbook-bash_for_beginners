@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Einführung](README.md)
+* [Bash for Beginners](README.md)
 
 ## Grundlagen
 
