@@ -2,7 +2,7 @@ name: Build Multi-Format eBook (EPUB, PDF, MOBI)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
@@ -10,147 +10,129 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-lang-german calibre
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-lang-german calibre
 
-    - name: Create EPUB Metadata
-      run: |
-        cat > metadata.yaml << EOF
-        ---
-        title: "Product Design Toolkit - ${{ github.event.repository.name }}"
-        author: "Ralph Hutter"
-        language: de-CH
-        rights: "© $(date +%Y) Ralph Hutter. Alle Rechte vorbehalten."
-        publisher: "HWZ Zürich / Product Design Toolkit"
-        date: $(date +%Y-%m-%d)
-        description: "Eine umfassende Anleitung für modernes Produktdesign und digitale Innovation."
-        subject: "Product Design, Innovation, Digital Business"
-        keywords: "Product Design, Toolkit, Innovation, Digital Strategy"
-        ---
-        EOF
+      - name: Create EPUB Metadata
+        run: |
+          cat > metadata.yaml << EOF
+          ---
+          title: "Product Design Toolkit - ${{ github.event.repository.name }}"
+          author: "Ralph Hutter"
+          language: de-CH
+          rights: "© $(date +%Y) Ralph Hutter. Alle Rechte vorbehalten."
+          publisher: "HWZ Zürich / Product Design Toolkit"
+          date: $(date +%Y-%m-%d)
+          description: "Eine umfassende Anleitung für modernes Produktdesign und digitale Innovation."
+          subject: "Product Design, Innovation, Digital Business"
+          keywords: "Product Design, Toolkit, Innovation, Digital Strategy"
+          ---
+          EOF
 
-    - name: Collect Markdown Files
-      run: |
-        if [ -f "SUMMARY.md" ]; then
-          grep -oP '(?<=\()(.*?)(?=\))' SUMMARY.md | grep '\.md$' > files.txt
-        else
-          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | sort > files.txt
-        fi
+      - name: Collect Markdown Files
+        run: |
+          if [ -f "SUMMARY.md" ]; then
+            grep -oP '(?<=\()(.*?)(?=\))' SUMMARY.md | grep '\.md$' > files.txt
+          else
+            find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | sort > files.txt
+          fi
 
-        echo "📄 Gefundene Dateien:"
-        cat files.txt
+          echo "📄 Gefundene Dateien:"
+          cat files.txt
 
-    - name: Build EPUB
-      run: |
-        FILES=$(cat files.txt | tr '\n' ' ')
+      - name: Build EPUB
+        run: |
+          FILES=$(cat files.txt | tr '\n' ' ')
 
-        pandoc metadata.yaml $FILES \
-          -o book.epub \
-          --toc \
-          --toc-depth=3 \
-          --epub-chapter-level=2 \
-          --css=styles/epub.css \
-          --metadata lang=de-CH
+          pandoc metadata.yaml $FILES \
+            -o book.epub \
+            --toc \
+            --toc-depth=3 \
+            --epub-chapter-level=2 \
+            --css=styles/epub.css \
+            --metadata lang=de-CH
 
-        echo "✅ EPUB erstellt"
-        ls -lh book.epub
+          echo "✅ EPUB erstellt"
+          ls -lh book.epub
 
-    - name: Build PDF
-      run: |
-        FILES=$(cat files.txt | tr '\n' ' ')
+      - name: Build PDF
+        run: |
+          FILES=$(cat files.txt | tr '\n' ' ')
 
-        pandoc metadata.yaml $FILES \
-          -o book.pdf \
-          --toc \
-          --toc-depth=3 \
-          --pdf-engine=xelatex \
-          -V geometry:margin=2.5cm \
-          -V documentclass=book \
-          -V papersize=a4 \
-          -V fontsize=11pt \
-          -V mainfont="DejaVu Serif" \
-          -V sansfont="DejaVu Sans" \
-          -V monofont="DejaVu Sans Mono"
+          pandoc metadata.yaml $FILES \
+            -o book.pdf \
+            --toc \
+            --toc-depth=3 \
+            --pdf-engine=xelatex \
+            -V geometry:margin=2.5cm \
+            -V documentclass=book \
+            -V papersize=a4 \
+            -V fontsize=11pt \
+            -V mainfont="DejaVu Serif" \
+            -V sansfont="DejaVu Sans" \
+            -V monofont="DejaVu Sans Mono"
 
-        echo "✅ PDF erstellt"
-        ls -lh book.pdf
+          echo "✅ PDF erstellt"
+          ls -lh book.pdf
 
-    - name: Build MOBI
-      run: |
-        ebook-convert book.epub book.mobi \
-          --output-profile kindle \
-          --language de \
-          --authors "Ralph Hutter" \
-          --publisher "HWZ Zürich / Product Design Toolkit"
+      - name: Build MOBI
+        run: |
+          ebook-convert book.epub book.mobi \
+            --output-profile kindle \
+            --language de \
+            --authors "Ralph Hutter" \
+            --publisher "HWZ Zürich / Product Design Toolkit"
 
-        echo "✅ MOBI erstellt"
-        ls -lh book.mobi
+          echo "✅ MOBI erstellt"
+          ls -lh book.mobi
 
-    - name: Create Summary
-      run: |
-        echo "📊 Build Summary" > build-summary.txt
-        echo "================" >> build-summary.txt
-        echo "" >> build-summary.txt
-        echo "Repository: ${{ github.event.repository.name }}" >> build-summary.txt
-        echo "Commit: ${{ github.sha }}" >> build-summary.txt
-        echo "Datum: $(date +%Y-%m-%d\ %H:%M:%S)" >> build-summary.txt
-        echo "" >> build-summary.txt
-        echo "Generierte Dateien:" >> build-summary.txt
-        ls -lh book.* >> build-summary.txt
+      - name: Create Summary
+        run: |
+          echo "📊 Build Summary" > build-summary.txt
+          echo "================" >> build-summary.txt
+          echo "" >> build-summary.txt
+          echo "Repository: ${{ github.event.repository.name }}" >> build-summary.txt
+          echo "Commit: ${{ github.sha }}" >> build-summary.txt
+          echo "Datum: $(date +%Y-%m-%d\ %H:%M:%S)" >> build-summary.txt
+          echo "" >> build-summary.txt
+          echo "Generierte Dateien:" >> build-summary.txt
+          ls -lh book.* >> build-summary.txt
 
-        cat build-summary.txt
+          cat build-summary.txt
 
-    - name: Upload All Formats as Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ebooks-${{ github.sha }}
-        path: |
-          book.epub
-          book.pdf
-          book.mobi
-          build-summary.txt
-        retention-days: 90
+      - name: Upload All Formats as Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebooks-${{ github.sha }}
+          path: |
+            book.epub
+            book.pdf
+            book.mobi
+            build-summary.txt
+          retention-days: 90
 
-    - name: Create Release on Tag
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          book.epub
-          book.pdf
-          book.mobi
-        body: |
-          📚 eBook Release für **${{ github.event.repository.name }}**
+      - name: Create Release on Tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            book.epub
+            book.pdf
+            book.mobi
+          body: |
+            📚 eBook Release
 
-          **Verfügbare Formate:**
-          - 📕 EPUB (Standard E-Reader)
-          - 📄 PDF (Druck & Desktop)
-          - 📱 MOBI (Kindle)
+            Verfügbare Formate:
+            - EPUB (Standard E-Reader)
+            - PDF (Druck & Desktop)
+            - MOBI (Kindle)
 
-          **Erstellt:** $(date +%Y-%m-%d)
-          **Commit:** ${{ github.sha }}
-          **Autor:** Ralph Hutter
-          **Publisher:** HWZ Zürich / Product Design Toolkit
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-## Verzeichnisstruktur für beide Workflows
-```
-dein-gitbook-repository/
-├── .github/
-│   └── workflows/
-│       ├── build-epub.yml           ← Einfache EPUB-Version
-│       └── build-ebook-multi.yml    ← Multi-Format Version
-├── styles/
-│   └── epub.css
-├── SUMMARY.md
-├── README.md
-├── chapter1.md
-├── chapter2.md
-└── cover.jpg (optional)
+            Autor: Ralph Hutter
+            Publisher: HWZ Zürich / Product Design Toolkit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
